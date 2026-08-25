@@ -165,8 +165,6 @@ dpx-sql catalog
 | 26 | **Yul** | [`bivex/DPX-Yul`](https://github.com/bivex/DPX-Yul) | EVM Intermediate Representation Optimization |
 | 27 | **Zig** | [`bivex/DPX-Zig`](https://github.com/bivex/DPX-Zig) | Comptime, Manual Memory Allocators, C ABI |
 
----
-
 ## 📄 License
 
 MIT License © 2026 Bivex
