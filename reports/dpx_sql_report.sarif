@@ -1,0 +1,1496 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "DPX-SQL",
+          "version": "0.1.0",
+          "informationUri": "https://github.com/bivex/DPX-SQL",
+          "rules": [
+            {
+              "id": "DPX-SQL-RECURSIVE_CTE_HIERARCHY",
+              "name": "RECURSIVE_CTE_HIERARCHY",
+              "shortDescription": {
+                "text": "Hierarchical graph or tree traversal using WITH RECURSIVE queries with anchor and recursive members."
+              },
+              "fullDescription": {
+                "text": "Hierarchical graph or tree traversal using WITH RECURSIVE queries with anchor and recursive members."
+              },
+              "properties": {
+                "category": "sql_idiomatic_optimization",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-WINDOW_FUNCTION_ANALYTICS",
+              "name": "WINDOW_FUNCTION_ANALYTICS",
+              "shortDescription": {
+                "text": "Analytical aggregations and ranking across partitions (ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, SUM OVER)."
+              },
+              "fullDescription": {
+                "text": "Analytical aggregations and ranking across partitions (ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, SUM OVER)."
+              },
+              "properties": {
+                "category": "sql_idiomatic_optimization",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-UPSERT_MERGE_IDEMPOTENCY",
+              "name": "UPSERT_MERGE_IDEMPOTENCY",
+              "shortDescription": {
+                "text": "Atomic insert-or-update idempotency using ON CONFLICT DO UPDATE or standard ANSI MERGE INTO."
+              },
+              "fullDescription": {
+                "text": "Atomic insert-or-update idempotency using ON CONFLICT DO UPDATE or standard ANSI MERGE INTO."
+              },
+              "properties": {
+                "category": "sql_idiomatic_optimization",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-MATERIALIZED_VIEW_CACHE",
+              "name": "MATERIALIZED_VIEW_CACHE",
+              "shortDescription": {
+                "text": "Precomputed query caching and indexing via CREATE MATERIALIZED VIEW with REFRESH strategy."
+              },
+              "fullDescription": {
+                "text": "Precomputed query caching and indexing via CREATE MATERIALIZED VIEW with REFRESH strategy."
+              },
+              "properties": {
+                "category": "sql_idiomatic_optimization",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-LATERAL_JOIN_SUBQUERY",
+              "name": "LATERAL_JOIN_SUBQUERY",
+              "shortDescription": {
+                "text": "Correlated subquery evaluation per row using CROSS/LEFT JOIN LATERAL or APPLY."
+              },
+              "fullDescription": {
+                "text": "Correlated subquery evaluation per row using CROSS/LEFT JOIN LATERAL or APPLY."
+              },
+              "properties": {
+                "category": "sql_idiomatic_optimization",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-TABLE_PARTITIONING_SHARDING",
+              "name": "TABLE_PARTITIONING_SHARDING",
+              "shortDescription": {
+                "text": "Horizontal data partitioning by RANGE, LIST, or HASH for high-volume storage scalability."
+              },
+              "fullDescription": {
+                "text": "Horizontal data partitioning by RANGE, LIST, or HASH for high-volume storage scalability."
+              },
+              "properties": {
+                "category": "sql_idiomatic_optimization",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-PARTIAL_CONDITIONAL_INDEX",
+              "name": "PARTIAL_CONDITIONAL_INDEX",
+              "shortDescription": {
+                "text": "Space-saving index defined over a subset of rows using CREATE INDEX ... WHERE filter."
+              },
+              "fullDescription": {
+                "text": "Space-saving index defined over a subset of rows using CREATE INDEX ... WHERE filter."
+              },
+              "properties": {
+                "category": "relational_indexing_schema",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-COVERING_INDEX_INCLUDE",
+              "name": "COVERING_INDEX_INCLUDE",
+              "shortDescription": {
+                "text": "Index-only scans avoiding heap lookups via CREATE INDEX ... INCLUDE (columns)."
+              },
+              "fullDescription": {
+                "text": "Index-only scans avoiding heap lookups via CREATE INDEX ... INCLUDE (columns)."
+              },
+              "properties": {
+                "category": "relational_indexing_schema",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-GIN_GIST_SPECIALIZED_INDEX",
+              "name": "GIN_GIST_SPECIALIZED_INDEX",
+              "shortDescription": {
+                "text": "Inverted or search-tree indexing for JSONB, array elements, PostGIS geometry, or full-text tsvector."
+              },
+              "fullDescription": {
+                "text": "Inverted or search-tree indexing for JSONB, array elements, PostGIS geometry, or full-text tsvector."
+              },
+              "properties": {
+                "category": "relational_indexing_schema",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-COMPOSITE_MULTI_COLUMN_INDEX",
+              "name": "COMPOSITE_MULTI_COLUMN_INDEX",
+              "shortDescription": {
+                "text": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+              },
+              "fullDescription": {
+                "text": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+              },
+              "properties": {
+                "category": "relational_indexing_schema",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-FOREIGN_KEY_CASCADE_TREE",
+              "name": "FOREIGN_KEY_CASCADE_TREE",
+              "shortDescription": {
+                "text": "Declarative referential integrity with ON DELETE/UPDATE CASCADE or SET NULL rules."
+              },
+              "fullDescription": {
+                "text": "Declarative referential integrity with ON DELETE/UPDATE CASCADE or SET NULL rules."
+              },
+              "properties": {
+                "category": "relational_indexing_schema",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-STORED_PROCEDURE_ROUTER",
+              "name": "STORED_PROCEDURE_ROUTER",
+              "shortDescription": {
+                "text": "Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+              },
+              "fullDescription": {
+                "text": "Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+              },
+              "properties": {
+                "category": "procedural_transaction_control",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+              "name": "TRIGGER_EVENT_INTERCEPTOR",
+              "shortDescription": {
+                "text": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+              },
+              "fullDescription": {
+                "text": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+              },
+              "properties": {
+                "category": "procedural_transaction_control",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-TRANSACTION_ISOLATION_GUARD",
+              "name": "TRANSACTION_ISOLATION_GUARD",
+              "shortDescription": {
+                "text": "Explicit concurrency and consistency locking (SERIALIZABLE, REPEATABLE READ, SELECT FOR UPDATE)."
+              },
+              "fullDescription": {
+                "text": "Explicit concurrency and consistency locking (SERIALIZABLE, REPEATABLE READ, SELECT FOR UPDATE)."
+              },
+              "properties": {
+                "category": "procedural_transaction_control",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-AUTONOMOUS_TRANSACTION_SAVEPOINT",
+              "name": "AUTONOMOUS_TRANSACTION_SAVEPOINT",
+              "shortDescription": {
+                "text": "Granular rollback boundaries and nested transaction checkpoints using SAVEPOINT / RELEASE."
+              },
+              "fullDescription": {
+                "text": "Granular rollback boundaries and nested transaction checkpoints using SAVEPOINT / RELEASE."
+              },
+              "properties": {
+                "category": "procedural_transaction_control",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+              "name": "FACTORY_SEQUENCE_ID_GENERATOR",
+              "shortDescription": {
+                "text": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+              },
+              "fullDescription": {
+                "text": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+              },
+              "properties": {
+                "category": "creational",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-SINGLETON_CONFIG_PARAM_TABLE",
+              "name": "SINGLETON_CONFIG_PARAM_TABLE",
+              "shortDescription": {
+                "text": "Singleton pattern managing global system configuration in a constrained 1-row table or key-value store."
+              },
+              "fullDescription": {
+                "text": "Singleton pattern managing global system configuration in a constrained 1-row table or key-value store."
+              },
+              "properties": {
+                "category": "creational",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-BRIDGE_POLYMORPHIC_JUNCTION",
+              "name": "BRIDGE_POLYMORPHIC_JUNCTION",
+              "shortDescription": {
+                "text": "Bridge pattern decoupling entity types from relations via polymorphic target_type + target_id junction."
+              },
+              "fullDescription": {
+                "text": "Bridge pattern decoupling entity types from relations via polymorphic target_type + target_id junction."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-COMPOSITE_HIERARCHICAL_TREE",
+              "name": "COMPOSITE_HIERARCHICAL_TREE",
+              "shortDescription": {
+                "text": "Composite pattern modeling parent-child trees via self-referencing foreign keys or closure tables."
+              },
+              "fullDescription": {
+                "text": "Composite pattern modeling parent-child trees via self-referencing foreign keys or closure tables."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-DECORATOR_COMPUTED_AUDIT_LOG",
+              "name": "DECORATOR_COMPUTED_AUDIT_LOG",
+              "shortDescription": {
+                "text": "Decorator pattern augmenting table modifications with automated shadow audit logs and timestamps."
+              },
+              "fullDescription": {
+                "text": "Decorator pattern augmenting table modifications with automated shadow audit logs and timestamps."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-FACADE_REPORTING_VIEW",
+              "name": "FACADE_REPORTING_VIEW",
+              "shortDescription": {
+                "text": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+              },
+              "fullDescription": {
+                "text": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-FLYWEIGHT_LOOKUP_DICTIONARY",
+              "name": "FLYWEIGHT_LOOKUP_DICTIONARY",
+              "shortDescription": {
+                "text": "Flyweight pattern deduplicating repeating string constants into small integer foreign key dictionary tables."
+              },
+              "fullDescription": {
+                "text": "Flyweight pattern deduplicating repeating string constants into small integer foreign key dictionary tables."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-PROXY_STAGED_LANDING_TABLE",
+              "name": "PROXY_STAGED_LANDING_TABLE",
+              "shortDescription": {
+                "text": "Proxy pattern buffering raw batch data into unlogged/temporary staging tables before ingestion."
+              },
+              "fullDescription": {
+                "text": "Proxy pattern buffering raw batch data into unlogged/temporary staging tables before ingestion."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-COMMAND_ACTION_QUEUE_TABLE",
+              "name": "COMMAND_ACTION_QUEUE_TABLE",
+              "shortDescription": {
+                "text": "Command pattern storing asynchronous transactional tasks or events in a work queue table (SKIP LOCKED)."
+              },
+              "fullDescription": {
+                "text": "Command pattern storing asynchronous transactional tasks or events in a work queue table (SKIP LOCKED)."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-INTERPRETER_DYNAMIC_SQL_EVAL",
+              "name": "INTERPRETER_DYNAMIC_SQL_EVAL",
+              "shortDescription": {
+                "text": "Interpreter pattern evaluating parameterized dynamic expressions at runtime via EXECUTE / sp_executesql."
+              },
+              "fullDescription": {
+                "text": "Interpreter pattern evaluating parameterized dynamic expressions at runtime via EXECUTE / sp_executesql."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-ITERATOR_CURSOR_FETCH_LOOP",
+              "name": "ITERATOR_CURSOR_FETCH_LOOP",
+              "shortDescription": {
+                "text": "Iterator pattern sequentially traversing large query result sets using CURSOR FOR ... FETCH NEXT."
+              },
+              "fullDescription": {
+                "text": "Iterator pattern sequentially traversing large query result sets using CURSOR FOR ... FETCH NEXT."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-MEDIATOR_PUBSUB_NOTIFY",
+              "name": "MEDIATOR_PUBSUB_NOTIFY",
+              "shortDescription": {
+                "text": "Mediator pattern broadcasting decoupled change notifications across services via LISTEN / NOTIFY."
+              },
+              "fullDescription": {
+                "text": "Mediator pattern broadcasting decoupled change notifications across services via LISTEN / NOTIFY."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-MEMENTO_POINT_IN_TIME_FLASHBACK",
+              "name": "MEMENTO_POINT_IN_TIME_FLASHBACK",
+              "shortDescription": {
+                "text": "Memento pattern preserving temporal snapshots via System-Versioned / Temporal tables or Change Data Capture (CDC)."
+              },
+              "fullDescription": {
+                "text": "Memento pattern preserving temporal snapshots via System-Versioned / Temporal tables or Change Data Capture (CDC)."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-OBSERVER_TRIGGER_AUDIT_BROADCAST",
+              "name": "OBSERVER_TRIGGER_AUDIT_BROADCAST",
+              "shortDescription": {
+                "text": "Observer pattern publishing table modification events to observer subscriber tables or event streams."
+              },
+              "fullDescription": {
+                "text": "Observer pattern publishing table modification events to observer subscriber tables or event streams."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-STATE_MACHINE_STATUS_CONSTRAINT",
+              "name": "STATE_MACHINE_STATUS_CONSTRAINT",
+              "shortDescription": {
+                "text": "State pattern enforcing valid lifecycle status transitions via CHECK constraints or trigger guards."
+              },
+              "fullDescription": {
+                "text": "State pattern enforcing valid lifecycle status transitions via CHECK constraints or trigger guards."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-STRATEGY_DYNAMIC_PARTITION_PRUNING",
+              "name": "STRATEGY_DYNAMIC_PARTITION_PRUNING",
+              "shortDescription": {
+                "text": "Strategy pattern selecting optimized storage partitions dynamically based on query filter keys."
+              },
+              "fullDescription": {
+                "text": "Strategy pattern selecting optimized storage partitions dynamically based on query filter keys."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-TEMPLATE_METHOD_PROCEDURAL_SCHEMA",
+              "name": "TEMPLATE_METHOD_PROCEDURAL_SCHEMA",
+              "shortDescription": {
+                "text": "Template Method pattern executing standard transaction workflow (begin -> hook -> commit -> catch)."
+              },
+              "fullDescription": {
+                "text": "Template Method pattern executing standard transaction workflow (begin -> hook -> commit -> catch)."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-VISITOR_RECURSIVE_TREE_SCAN",
+              "name": "VISITOR_RECURSIVE_TREE_SCAN",
+              "shortDescription": {
+                "text": "Visitor pattern executing domain operations across all nodes in a hierarchical tree via recursive query."
+              },
+              "fullDescription": {
+                "text": "Visitor pattern executing domain operations across all nodes in a hierarchical tree via recursive query."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-SQL_INJECTION_DYNAMIC_CONCAT_HAZARD",
+              "name": "SQL_INJECTION_DYNAMIC_CONCAT_HAZARD",
+              "shortDescription": {
+                "text": "Unsanitized string concatenation in dynamic EXECUTE statements risking arbitrary SQL injection."
+              },
+              "fullDescription": {
+                "text": "Unsanitized string concatenation in dynamic EXECUTE statements risking arbitrary SQL injection."
+              },
+              "properties": {
+                "category": "sql_security_hazards",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+              "name": "MISSING_INDEX_FOREIGN_KEY_HAZARD",
+              "shortDescription": {
+                "text": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+              },
+              "fullDescription": {
+                "text": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+              },
+              "properties": {
+                "category": "sql_security_hazards",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-N_PLUS_ONE_CURSOR_ITERATION_HAZARD",
+              "name": "N_PLUS_ONE_CURSOR_ITERATION_HAZARD",
+              "shortDescription": {
+                "text": "Row-by-Row cursor loop (RBAR) executing queries inside iteration instead of vectorized set-based operations."
+              },
+              "fullDescription": {
+                "text": "Row-by-Row cursor loop (RBAR) executing queries inside iteration instead of vectorized set-based operations."
+              },
+              "properties": {
+                "category": "sql_security_hazards",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-UNBOUNDED_SELECT_STAR_HAZARD",
+              "name": "UNBOUNDED_SELECT_STAR_HAZARD",
+              "shortDescription": {
+                "text": "Production view or procedure using SELECT * risking schema drift breakage and excessive IO."
+              },
+              "fullDescription": {
+                "text": "Production view or procedure using SELECT * risking schema drift breakage and excessive IO."
+              },
+              "properties": {
+                "category": "sql_security_hazards",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-DEADLOCK_PRONE_LOCK_ORDERING_HAZARD",
+              "name": "DEADLOCK_PRONE_LOCK_ORDERING_HAZARD",
+              "shortDescription": {
+                "text": "SELECT FOR UPDATE without explicit ORDER BY risking concurrent deadlock under high contention."
+              },
+              "fullDescription": {
+                "text": "SELECT FOR UPDATE without explicit ORDER BY risking concurrent deadlock under high contention."
+              },
+              "properties": {
+                "category": "sql_security_hazards",
+                "confidence": "VERY_HIGH"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "DPX-SQL-RECURSIVE_CTE_HIERARCHY",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "[recursive_cte_hierarchy] detected on 'WITH_RECURSIVE': Hierarchical graph or tree traversal using WITH RECURSIVE queries with anchor and recursive members."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 144,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-WINDOW_FUNCTION_ANALYTICS",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "[window_function_analytics] detected on 'OVER()': Analytical aggregations and ranking across partitions (ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, SUM OVER)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 144,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-UPSERT_MERGE_IDEMPOTENCY",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "[upsert_merge_idempotency] detected on 'UPSERT/MERGE': Atomic insert-or-update idempotency using ON CONFLICT DO UPDATE or standard ANSI MERGE INTO."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 157,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MATERIALIZED_VIEW_CACHE",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "[materialized_view_cache] detected on 'mv_daily_financial_summary': Precomputed query caching and indexing via CREATE MATERIALIZED VIEW with REFRESH strategy."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 122,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-LATERAL_JOIN_SUBQUERY",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "[lateral_join_subquery] detected on 'JOIN_LATERAL': Correlated subquery evaluation per row using CROSS/LEFT JOIN LATERAL or APPLY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 161,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TABLE_PARTITIONING_SHARDING",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[table_partitioning_sharding] detected on 'ledger_transactions': Horizontal data partitioning by RANGE, LIST, or HASH for high-volume storage scalability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-PARTIAL_CONDITIONAL_INDEX",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[partial_conditional_index] detected on 'idx_ledger_active_pending': Space-saving index defined over a subset of rows using CREATE INDEX ... WHERE filter."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-COVERING_INDEX_INCLUDE",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "[covering_index_include] detected on 'idx_ledger_covering_acc': Index-only scans avoiding heap lookups via CREATE INDEX ... INCLUDE (columns)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 48,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-GIN_GIST_SPECIALIZED_INDEX",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[gin_gist_specialized_index] detected on 'idx_ledger_metadata_gin': Inverted or search-tree indexing for JSONB, array elements, PostGIS geometry, or full-text tsvector."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 49,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-COMPOSITE_MULTI_COLUMN_INDEX",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "[composite_multi_column_index] detected on 'idx_ledger_active_pending': Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-COMPOSITE_MULTI_COLUMN_INDEX",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "[composite_multi_column_index] detected on 'idx_ledger_compound': Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FOREIGN_KEY_CASCADE_TREE",
+          "ruleIndex": 10,
+          "level": "note",
+          "message": {
+            "text": "[foreign_key_cascade_tree] detected on 'organizations->organizations': Declarative referential integrity with ON DELETE/UPDATE CASCADE or SET NULL rules."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FOREIGN_KEY_CASCADE_TREE",
+          "ruleIndex": 10,
+          "level": "note",
+          "message": {
+            "text": "[foreign_key_cascade_tree] detected on 'ledger_transactions->organizations': Declarative referential integrity with ON DELETE/UPDATE CASCADE or SET NULL rules."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STORED_PROCEDURE_ROUTER",
+          "ruleIndex": 11,
+          "level": "note",
+          "message": {
+            "text": "[stored_procedure_router] detected on 'process_settlement_batch': Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STORED_PROCEDURE_ROUTER",
+          "ruleIndex": 11,
+          "level": "note",
+          "message": {
+            "text": "[stored_procedure_router] detected on 'query_custom_table': Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 111,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 12,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'trg_ledger_audit': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 118,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRANSACTION_ISOLATION_GUARD",
+          "ruleIndex": 13,
+          "level": "note",
+          "message": {
+            "text": "[transaction_isolation_guard] detected on 'ISOLATION_LOCK': Explicit concurrency and consistency locking (SERIALIZABLE, REPEATABLE READ, SELECT FOR UPDATE)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 167,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-AUTONOMOUS_TRANSACTION_SAVEPOINT",
+          "ruleIndex": 14,
+          "level": "note",
+          "message": {
+            "text": "[autonomous_transaction_savepoint] detected on 'process_settlement_batch': Granular rollback boundaries and nested transaction checkpoints using SAVEPOINT / RELEASE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 15,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'tenant_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 15,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'order_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 15,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'organizations.id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 15,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'ledger_transactions.id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 15,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'entity_attachments.id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-SINGLETON_CONFIG_PARAM_TABLE",
+          "ruleIndex": 16,
+          "level": "note",
+          "message": {
+            "text": "[singleton_config_param_table] detected on 'system_parameters': Singleton pattern managing global system configuration in a constrained 1-row table or key-value store."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-BRIDGE_POLYMORPHIC_JUNCTION",
+          "ruleIndex": 17,
+          "level": "note",
+          "message": {
+            "text": "[bridge_polymorphic_junction] detected on 'entity_attachments': Bridge pattern decoupling entity types from relations via polymorphic target_type + target_id junction."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-COMPOSITE_HIERARCHICAL_TREE",
+          "ruleIndex": 18,
+          "level": "note",
+          "message": {
+            "text": "[composite_hierarchical_tree] detected on 'organizations': Composite pattern modeling parent-child trees via self-referencing foreign keys or closure tables."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-DECORATOR_COMPUTED_AUDIT_LOG",
+          "ruleIndex": 19,
+          "level": "note",
+          "message": {
+            "text": "[decorator_computed_audit_log] detected on 'trg_ledger_audit': Decorator pattern augmenting table modifications with automated shadow audit logs and timestamps."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 118,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 20,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'v_organization_full_tree': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 133,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FLYWEIGHT_LOOKUP_DICTIONARY",
+          "ruleIndex": 21,
+          "level": "note",
+          "message": {
+            "text": "[flyweight_lookup_dictionary] detected on 'order_status_dictionary': Flyweight pattern deduplicating repeating string constants into small integer foreign key dictionary tables."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-PROXY_STAGED_LANDING_TABLE",
+          "ruleIndex": 22,
+          "level": "note",
+          "message": {
+            "text": "[proxy_staged_landing_table] detected on 'staging_raw_events': Proxy pattern buffering raw batch data into unlogged/temporary staging tables before ingestion."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 72,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-COMMAND_ACTION_QUEUE_TABLE",
+          "ruleIndex": 23,
+          "level": "note",
+          "message": {
+            "text": "[command_action_queue_table] detected on 'outbox_tasks': Command pattern storing asynchronous transactional tasks or events in a work queue table (SKIP LOCKED)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-INTERPRETER_DYNAMIC_SQL_EVAL",
+          "ruleIndex": 24,
+          "level": "note",
+          "message": {
+            "text": "[interpreter_dynamic_sql_eval] detected on 'query_custom_table': Interpreter pattern evaluating parameterized dynamic expressions at runtime via EXECUTE / sp_executesql."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 111,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-ITERATOR_CURSOR_FETCH_LOOP",
+          "ruleIndex": 25,
+          "level": "note",
+          "message": {
+            "text": "[iterator_cursor_fetch_loop] detected on 'process_settlement_batch': Iterator pattern sequentially traversing large query result sets using CURSOR FOR ... FETCH NEXT."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MEDIATOR_PUBSUB_NOTIFY",
+          "ruleIndex": 26,
+          "level": "note",
+          "message": {
+            "text": "[mediator_pubsub_notify] detected on 'process_settlement_batch': Mediator pattern broadcasting decoupled change notifications across services via LISTEN / NOTIFY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MEMENTO_POINT_IN_TIME_FLASHBACK",
+          "ruleIndex": 27,
+          "level": "note",
+          "message": {
+            "text": "[memento_point_in_time_flashback] detected on 'account_balances_history': Memento pattern preserving temporal snapshots via System-Versioned / Temporal tables or Change Data Capture (CDC)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 79,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-OBSERVER_TRIGGER_AUDIT_BROADCAST",
+          "ruleIndex": 28,
+          "level": "note",
+          "message": {
+            "text": "[observer_trigger_audit_broadcast] detected on 'trg_ledger_audit': Observer pattern publishing table modification events to observer subscriber tables or event streams."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 118,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STATE_MACHINE_STATUS_CONSTRAINT",
+          "ruleIndex": 29,
+          "level": "note",
+          "message": {
+            "text": "[state_machine_status_constraint] detected on 'ledger_transactions': State pattern enforcing valid lifecycle status transitions via CHECK constraints or trigger guards."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STRATEGY_DYNAMIC_PARTITION_PRUNING",
+          "ruleIndex": 30,
+          "level": "note",
+          "message": {
+            "text": "[strategy_dynamic_partition_pruning] detected on 'ledger_transactions': Strategy pattern selecting optimized storage partitions dynamically based on query filter keys."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TEMPLATE_METHOD_PROCEDURAL_SCHEMA",
+          "ruleIndex": 31,
+          "level": "note",
+          "message": {
+            "text": "[template_method_procedural_schema] detected on 'process_settlement_batch': Template Method pattern executing standard transaction workflow (begin -> hook -> commit -> catch)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-VISITOR_RECURSIVE_TREE_SCAN",
+          "ruleIndex": 32,
+          "level": "note",
+          "message": {
+            "text": "[visitor_recursive_tree_scan] detected on 'RECURSIVE_VISITOR': Visitor pattern executing domain operations across all nodes in a hierarchical tree via recursive query."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 144,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-SQL_INJECTION_DYNAMIC_CONCAT_HAZARD",
+          "ruleIndex": 33,
+          "level": "error",
+          "message": {
+            "text": "[sql_injection_dynamic_concat_hazard] detected on 'query_custom_table': Unsanitized string concatenation in dynamic EXECUTE statements risking arbitrary SQL injection."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 113,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 34,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'organizations.parent_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-N_PLUS_ONE_CURSOR_ITERATION_HAZARD",
+          "ruleIndex": 35,
+          "level": "error",
+          "message": {
+            "text": "[n_plus_one_cursor_iteration_hazard] detected on 'process_settlement_batch': Row-by-Row cursor loop (RBAR) executing queries inside iteration instead of vectorized set-based operations."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-UNBOUNDED_SELECT_STAR_HAZARD",
+          "ruleIndex": 36,
+          "level": "error",
+          "message": {
+            "text": "[unbounded_select_star_hazard] detected on 'query_custom_table': Production view or procedure using SELECT * risking schema drift breakage and excessive IO."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 111,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-DEADLOCK_PRONE_LOCK_ORDERING_HAZARD",
+          "ruleIndex": 37,
+          "level": "error",
+          "message": {
+            "text": "[deadlock_prone_lock_ordering_hazard] detected on 'FOR_UPDATE': SELECT FOR UPDATE without explicit ORDER BY risking concurrent deadlock under high contention."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/ecommerce_enterprise_schema.sql"
+                },
+                "region": {
+                  "startLine": 167,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

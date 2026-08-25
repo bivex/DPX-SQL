@@ -29,19 +29,22 @@ class RegexSqlParser(SqlParserPort):
         # 2. Parse Tables & Columns & Constraints
         self._parse_tables(content, sql_file)
 
-        # 3. Parse Indexes
+        # 3. Parse ALTER TABLE Constraints (pg_dump format)
+        self._parse_alter_tables(content, sql_file)
+
+        # 4. Parse Indexes
         self._parse_indexes(content, sql_file)
 
-        # 4. Parse Views
+        # 5. Parse Views
         self._parse_views(content, sql_file)
 
-        # 5. Parse Functions & Stored Procedures
+        # 6. Parse Functions & Stored Procedures
         self._parse_functions(content, sql_file)
 
-        # 6. Parse Triggers
+        # 7. Parse Triggers
         self._parse_triggers(content, sql_file)
 
-        # 7. Parse Queries & CTEs
+        # 8. Parse Queries & CTEs
         self._parse_queries(content, sql_file)
 
         return sql_file
@@ -244,6 +247,69 @@ class RegexSqlParser(SqlParserPort):
                     line_number=start_line,
                 )
                 tbl.columns.append(col)
+
+    def _parse_alter_tables(self, content: str, sql_file: SqlFile) -> None:
+        # Matches ALTER TABLE [ONLY] [schema.]table_name ADD CONSTRAINT ...
+        alter_pattern = re.compile(
+            r'\balter\s+table\s+(?:only\s+)?([a-zA-Z0-9_\.]+)\s+add\s+constraint\s+([a-zA-Z0-9_]+)\s+(.*?)(?:;|\Z)',
+            re.IGNORECASE,
+        )
+
+        table_dict = {t.name.lower(): t for t in sql_file.tables}
+        # Also map without schema prefix e.g. public.users -> users
+        for t in sql_file.tables:
+            if "." in t.name:
+                table_dict[t.name.split(".")[-1].lower()] = t
+
+        for match in alter_pattern.finditer(content):
+            tbl_name = match.group(1).strip()
+            constraint_name = match.group(2).strip()
+            body = match.group(3).strip()
+
+            target_tbl = table_dict.get(tbl_name.lower()) or table_dict.get(tbl_name.split(".")[-1].lower())
+            if not target_tbl:
+                continue
+
+            # Foreign key: FOREIGN KEY (from_col) REFERENCES to_table (to_col) [ON DELETE ...]
+            fk_m = re.search(
+                r'\bforeign\s+key\s*\(([^)]+)\)\s+references\s+([a-zA-Z0-9_\.]+)\s*(?:\(([^)]+)\))?(?:\s+on\s+delete\s+([a-zA-Z\s]+))?',
+                body,
+                re.IGNORECASE,
+            )
+            if fk_m:
+                from_col = fk_m.group(1).strip().strip('"\'')
+                to_tbl = fk_m.group(2).strip()
+                to_col = (fk_m.group(3) or "id").strip().strip('"\'')
+                on_delete = (fk_m.group(4) or "").strip()
+                target_tbl.foreign_keys.append({
+                    "from_col": from_col,
+                    "to_table": to_tbl,
+                    "to_col": to_col,
+                    "on_delete": on_delete,
+                })
+                # Mark column as FK
+                for c in target_tbl.columns:
+                    if c.name.lower() == from_col.lower():
+                        c.is_foreign_key = True
+                        c.references_table = to_tbl
+                        c.references_column = to_col
+                continue
+
+            # Primary key: PRIMARY KEY (col1, col2)
+            pk_m = re.search(r'\bprimary\s+key\s*\(([^)]+)\)', body, re.IGNORECASE)
+            if pk_m:
+                pks = [c.strip().strip('"\'') for c in pk_m.group(1).split(",")]
+                target_tbl.primary_keys.extend(pks)
+                for c in target_tbl.columns:
+                    if c.name.lower() in [p.lower() for p in pks]:
+                        c.is_primary_key = True
+                continue
+
+            # Check constraint: CHECK (...)
+            chk_m = re.search(r'\bcheck\s*\((.*)\)', body, re.IGNORECASE | re.DOTALL)
+            if chk_m:
+                target_tbl.check_constraints.append(chk_m.group(1).strip())
+                continue
 
     def _parse_indexes(self, content: str, sql_file: SqlFile) -> None:
         # Matches CREATE [UNIQUE] INDEX [IF NOT EXISTS] idx_name ON tbl [USING method] (cols) [INCLUDE (cols)] [WHERE ...]

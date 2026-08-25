@@ -1,0 +1,3022 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "DPX-SQL",
+          "version": "0.1.0",
+          "informationUri": "https://github.com/bivex/DPX-SQL",
+          "rules": [
+            {
+              "id": "DPX-SQL-MATERIALIZED_VIEW_CACHE",
+              "name": "MATERIALIZED_VIEW_CACHE",
+              "shortDescription": {
+                "text": "Precomputed query caching and indexing via CREATE MATERIALIZED VIEW with REFRESH strategy."
+              },
+              "fullDescription": {
+                "text": "Precomputed query caching and indexing via CREATE MATERIALIZED VIEW with REFRESH strategy."
+              },
+              "properties": {
+                "category": "sql_idiomatic_optimization",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-TABLE_PARTITIONING_SHARDING",
+              "name": "TABLE_PARTITIONING_SHARDING",
+              "shortDescription": {
+                "text": "Horizontal data partitioning by RANGE, LIST, or HASH for high-volume storage scalability."
+              },
+              "fullDescription": {
+                "text": "Horizontal data partitioning by RANGE, LIST, or HASH for high-volume storage scalability."
+              },
+              "properties": {
+                "category": "sql_idiomatic_optimization",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-GIN_GIST_SPECIALIZED_INDEX",
+              "name": "GIN_GIST_SPECIALIZED_INDEX",
+              "shortDescription": {
+                "text": "Inverted or search-tree indexing for JSONB, array elements, PostGIS geometry, or full-text tsvector."
+              },
+              "fullDescription": {
+                "text": "Inverted or search-tree indexing for JSONB, array elements, PostGIS geometry, or full-text tsvector."
+              },
+              "properties": {
+                "category": "relational_indexing_schema",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-COMPOSITE_MULTI_COLUMN_INDEX",
+              "name": "COMPOSITE_MULTI_COLUMN_INDEX",
+              "shortDescription": {
+                "text": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+              },
+              "fullDescription": {
+                "text": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+              },
+              "properties": {
+                "category": "relational_indexing_schema",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-STORED_PROCEDURE_ROUTER",
+              "name": "STORED_PROCEDURE_ROUTER",
+              "shortDescription": {
+                "text": "Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+              },
+              "fullDescription": {
+                "text": "Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+              },
+              "properties": {
+                "category": "procedural_transaction_control",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+              "name": "TRIGGER_EVENT_INTERCEPTOR",
+              "shortDescription": {
+                "text": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+              },
+              "fullDescription": {
+                "text": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+              },
+              "properties": {
+                "category": "procedural_transaction_control",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+              "name": "FACTORY_SEQUENCE_ID_GENERATOR",
+              "shortDescription": {
+                "text": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+              },
+              "fullDescription": {
+                "text": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+              },
+              "properties": {
+                "category": "creational",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-PROTOTYPE_ROW_CLONER",
+              "name": "PROTOTYPE_ROW_CLONER",
+              "shortDescription": {
+                "text": "Prototype pattern cloning existing template rows into new records via INSERT INTO ... SELECT."
+              },
+              "fullDescription": {
+                "text": "Prototype pattern cloning existing template rows into new records via INSERT INTO ... SELECT."
+              },
+              "properties": {
+                "category": "creational",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-FACADE_REPORTING_VIEW",
+              "name": "FACADE_REPORTING_VIEW",
+              "shortDescription": {
+                "text": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+              },
+              "fullDescription": {
+                "text": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-FLYWEIGHT_LOOKUP_DICTIONARY",
+              "name": "FLYWEIGHT_LOOKUP_DICTIONARY",
+              "shortDescription": {
+                "text": "Flyweight pattern deduplicating repeating string constants into small integer foreign key dictionary tables."
+              },
+              "fullDescription": {
+                "text": "Flyweight pattern deduplicating repeating string constants into small integer foreign key dictionary tables."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-PROXY_STAGED_LANDING_TABLE",
+              "name": "PROXY_STAGED_LANDING_TABLE",
+              "shortDescription": {
+                "text": "Proxy pattern buffering raw batch data into unlogged/temporary staging tables before ingestion."
+              },
+              "fullDescription": {
+                "text": "Proxy pattern buffering raw batch data into unlogged/temporary staging tables before ingestion."
+              },
+              "properties": {
+                "category": "structural",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-CHAIN_OF_RESPONSIBILITY_TRIGGER_PIPELINE",
+              "name": "CHAIN_OF_RESPONSIBILITY_TRIGGER_PIPELINE",
+              "shortDescription": {
+                "text": "Chain of Responsibility sequencing ordered triggers (validation -> normalization -> audit)."
+              },
+              "fullDescription": {
+                "text": "Chain of Responsibility sequencing ordered triggers (validation -> normalization -> audit)."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-STRATEGY_DYNAMIC_PARTITION_PRUNING",
+              "name": "STRATEGY_DYNAMIC_PARTITION_PRUNING",
+              "shortDescription": {
+                "text": "Strategy pattern selecting optimized storage partitions dynamically based on query filter keys."
+              },
+              "fullDescription": {
+                "text": "Strategy pattern selecting optimized storage partitions dynamically based on query filter keys."
+              },
+              "properties": {
+                "category": "behavioral",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+              "name": "MISSING_INDEX_FOREIGN_KEY_HAZARD",
+              "shortDescription": {
+                "text": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+              },
+              "fullDescription": {
+                "text": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+              },
+              "properties": {
+                "category": "sql_security_hazards",
+                "confidence": "VERY_HIGH"
+              }
+            },
+            {
+              "id": "DPX-SQL-FAT_VIEW_INTERFACE_ISP",
+              "name": "FAT_VIEW_INTERFACE_ISP",
+              "shortDescription": {
+                "text": "View joining excessive tables (>= 8) creating monolithic interface coupling and slow execution."
+              },
+              "fullDescription": {
+                "text": "View joining excessive tables (>= 8) creating monolithic interface coupling and slow execution."
+              },
+              "properties": {
+                "category": "solid_principles",
+                "confidence": "VERY_HIGH"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "DPX-SQL-MATERIALIZED_VIEW_CACHE",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "[materialized_view_cache] detected on 'public.rental_by_category': Precomputed query caching and indexing via CREATE MATERIALIZED VIEW with REFRESH strategy."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1752,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TABLE_PARTITIONING_SHARDING",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "[table_partitioning_sharding] detected on 'public.payment': Horizontal data partitioning by RANGE, LIST, or HASH for high-volume storage scalability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 766,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-GIN_GIST_SPECIALIZED_INDEX",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "[gin_gist_specialized_index] detected on 'film_fulltext_idx': Inverted or search-tree indexing for JSONB, array elements, PostGIS geometry, or full-text tsvector."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2354,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-COMPOSITE_MULTI_COLUMN_INDEX",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "[composite_multi_column_index] detected on 'idx_store_id_film_id': Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2522,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-COMPOSITE_MULTI_COLUMN_INDEX",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "[composite_multi_column_index] detected on 'idx_unq_rental_rental_date_inventory_id_customer_id': Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2543,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-COMPOSITE_MULTI_COLUMN_INDEX",
+          "ruleIndex": 3,
+          "level": "note",
+          "message": {
+            "text": "[composite_multi_column_index] detected on 'payment_uuid_key': Multi-column compound B-tree index optimizing multi-predicate queries and sorting."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2613,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STORED_PROCEDURE_ROUTER",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "[stored_procedure_router] detected on 'public._group_concat': Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STORED_PROCEDURE_ROUTER",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "[stored_procedure_router] detected on 'public.inventory_held_by_customer': Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 162,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STORED_PROCEDURE_ROUTER",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "[stored_procedure_router] detected on 'public.inventory_in_stock': Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 184,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STORED_PROCEDURE_ROUTER",
+          "ruleIndex": 4,
+          "level": "note",
+          "message": {
+            "text": "[stored_procedure_router] detected on 'public.last_day': Encapsulated business logic and multi-step transaction workflow inside server-side routines."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 221,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'film_fulltext_trigger': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2620,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2627,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2634,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2641,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2648,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2655,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2662,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2669,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2676,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2683,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2690,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2697,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2704,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2711,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2718,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-TRIGGER_EVENT_INTERCEPTOR",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "[trigger_event_interceptor] detected on 'last_updated': Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2725,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.customer_customer_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.actor_actor_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.category_category_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.film_film_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.address_address_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.city_city_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.country_country_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.inventory_inventory_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.language_language_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_payment_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.rental_rental_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.staff_staff_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.store_store_id_seq': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.customer.customer_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 272,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.actor.actor_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 383,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.category.category_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 411,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.film.film_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 438,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.address.address_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 553,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.city.city_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 585,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.country.country_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 613,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.inventory.inventory_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 688,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.language.language_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 716,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 766,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_01.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 785,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_02.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 802,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_03.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 819,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_04.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 836,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_05.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 853,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_06.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 870,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_07.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 887,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_08.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 904,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_09.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 921,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_10.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 938,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_11.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 955,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2022_12.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 972,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_01.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 989,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_02.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1006,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_03.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1023,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_04.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1040,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_05.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1057,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_06.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1074,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_07.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1091,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_08.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1108,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_09.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1125,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_10.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1142,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_11.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1159,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2023_12.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1176,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_01.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1193,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_02.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1210,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_03.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1227,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_04.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1244,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_05.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1261,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_06.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1278,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_07.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1295,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_08.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1312,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_09.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1329,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_10.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1346,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_11.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1363,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2024_12.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1380,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_01.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1397,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_02.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1414,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_03.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1431,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_04.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1448,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_05.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1465,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_06.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1482,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_07.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1499,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_08.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1516,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_09.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1533,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_10.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1550,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_11.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1567,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2025_12.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1584,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2026_01.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1601,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2026_02.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1618,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2026_03.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1635,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2026_04.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1652,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2026_05.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1669,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2026_06.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1686,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.payment_p2026_07.payment_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1703,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.rental.rental_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1734,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.staff.staff_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1805,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACTORY_SEQUENCE_ID_GENERATOR",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "[factory_sequence_id_generator] detected on 'public.store.store_id': Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1840,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-PROTOTYPE_ROW_CLONER",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "[prototype_row_cloner] detected on 'INSERT_SELECT': Prototype pattern cloning existing template rows into new records via INSERT INTO ... SELECT."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 324,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'public.actor_info': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 516,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'public.customer_list': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 626,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'public.film_list': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 651,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'public.nicer_but_slower_film_list': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 729,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'public.rental_by_category': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1752,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'public.sales_by_film_category': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1772,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'public.sales_by_store': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1854,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FACADE_REPORTING_VIEW",
+          "ruleIndex": 8,
+          "level": "note",
+          "message": {
+            "text": "[facade_reporting_view] detected on 'public.staff_list': Facade pattern providing unified simplified read interface over complex normalized multi-table joins."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1876,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FLYWEIGHT_LOOKUP_DICTIONARY",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "[flyweight_lookup_dictionary] detected on 'public.category': Flyweight pattern deduplicating repeating string constants into small integer foreign key dictionary tables."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 411,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-PROXY_STAGED_LANDING_TABLE",
+          "ruleIndex": 10,
+          "level": "note",
+          "message": {
+            "text": "[proxy_staged_landing_table] detected on 'tmpCustomer': Proxy pattern buffering raw batch data into unlogged/temporary staging tables before ingestion."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 318,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-CHAIN_OF_RESPONSIBILITY_TRIGGER_PIPELINE",
+          "ruleIndex": 11,
+          "level": "note",
+          "message": {
+            "text": "[chain_of_responsibility_trigger_pipeline] detected on 'public.film': Chain of Responsibility sequencing ordered triggers (validation -> normalization -> audit)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 2620,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-STRATEGY_DYNAMIC_PARTITION_PRUNING",
+          "ruleIndex": 12,
+          "level": "note",
+          "message": {
+            "text": "[strategy_dynamic_partition_pruning] detected on 'public.payment': Strategy pattern selecting optimized storage partitions dynamically based on query filter keys."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 766,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.inventory.film_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 688,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.payment_p2022_01.rental_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 785,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.payment_p2022_02.rental_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 802,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.payment_p2022_03.rental_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 819,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.payment_p2022_04.rental_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 836,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.payment_p2022_05.rental_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 853,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.payment_p2022_06.rental_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 870,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.rental.customer_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1734,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.rental.staff_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1734,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.staff.address_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1805,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.staff.store_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1805,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-MISSING_INDEX_FOREIGN_KEY_HAZARD",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "[missing_index_foreign_key_hazard] detected on 'public.store.address_id': Foreign key column without corresponding index causing full table scans and table-level locks on DELETE."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1840,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "DPX-SQL-FAT_VIEW_INTERFACE_ISP",
+          "ruleIndex": 14,
+          "level": "note",
+          "message": {
+            "text": "[fat_view_interface_isp] detected on 'public.sales_by_store': View joining excessive tables (>= 8) creating monolithic interface coupling and slow execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "benchmarks/real_world/pagila_postgresql.sql"
+                },
+                "region": {
+                  "startLine": 1854,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

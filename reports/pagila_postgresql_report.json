@@ -1,0 +1,3210 @@
+{
+  "target_path": "benchmarks/real_world/pagila_postgresql.sql",
+  "scanned_files_count": 1,
+  "execution_time_seconds": 0.0045,
+  "total_detections": 133,
+  "category_counts": {
+    "sql_idiomatic_optimization": 2,
+    "relational_indexing_schema": 4,
+    "procedural_transaction_control": 20,
+    "creational": 82,
+    "structural": 10,
+    "behavioral": 2,
+    "sql_security_hazards": 12,
+    "solid_principles": 1
+  },
+  "detections": [
+    {
+      "pattern_type": "materialized_view_cache",
+      "category": "sql_idiomatic_optimization",
+      "target_name": "public.rental_by_category",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1752,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Precomputed query caching and indexing via CREATE MATERIALIZED VIEW with REFRESH strategy.",
+      "evidence": [
+        {
+          "rule_name": "SQL_MATERIALIZED_VIEW",
+          "weight": 0.9,
+          "description": "Materialized View 'public.rental_by_category' caches precomputed query results with physical storage",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1752:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "table_partitioning_sharding",
+      "category": "sql_idiomatic_optimization",
+      "target_name": "public.payment",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 766,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Horizontal data partitioning by RANGE, LIST, or HASH for high-volume storage scalability.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TABLE_PARTITION",
+          "weight": 0.92,
+          "description": "Table 'public.payment' implements Horizontal Partitioning by RANGE (payment_date)",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:766:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "gin_gist_specialized_index",
+      "category": "relational_indexing_schema",
+      "target_name": "film_fulltext_idx",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2354,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Inverted or search-tree indexing for JSONB, array elements, PostGIS geometry, or full-text tsvector.",
+      "evidence": [
+        {
+          "rule_name": "SQL_SPECIALIZED_INDEX_TYPE",
+          "weight": 0.95,
+          "description": "Index 'film_fulltext_idx' on 'public.film' uses specialized access method GIST for JSONB/array/geometry/full-text",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2354:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "composite_multi_column_index",
+      "category": "relational_indexing_schema",
+      "target_name": "idx_store_id_film_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2522,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting.",
+      "evidence": [
+        {
+          "rule_name": "SQL_COMPOSITE_INDEX",
+          "weight": 0.9,
+          "description": "Index 'idx_store_id_film_id' on 'public.inventory' is a composite multi-column index (store_id, film_id)",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2522:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "composite_multi_column_index",
+      "category": "relational_indexing_schema",
+      "target_name": "idx_unq_rental_rental_date_inventory_id_customer_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2543,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting.",
+      "evidence": [
+        {
+          "rule_name": "SQL_COMPOSITE_INDEX",
+          "weight": 0.9,
+          "description": "Index 'idx_unq_rental_rental_date_inventory_id_customer_id' on 'public.rental' is a composite multi-column index (rental_date, inventory_id, customer_id)",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2543:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "composite_multi_column_index",
+      "category": "relational_indexing_schema",
+      "target_name": "payment_uuid_key",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2613,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting.",
+      "evidence": [
+        {
+          "rule_name": "SQL_COMPOSITE_INDEX",
+          "weight": 0.9,
+          "description": "Index 'payment_uuid_key' on 'public.payment' is a composite multi-column index (uuid, payment_date)",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2613:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "stored_procedure_router",
+      "category": "procedural_transaction_control",
+      "target_name": "public._group_concat",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 66,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Encapsulated business logic and multi-step transaction workflow inside server-side routines.",
+      "evidence": [
+        {
+          "rule_name": "SQL_STORED_PROCEDURE",
+          "weight": 0.92,
+          "description": "Function/Procedure 'public._group_concat' (plpgsql) encapsulates server-side business logic and return type 'numeric\n    LANGUAGE plpgsql'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:66:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "stored_procedure_router",
+      "category": "procedural_transaction_control",
+      "target_name": "public.inventory_held_by_customer",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 162,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Encapsulated business logic and multi-step transaction workflow inside server-side routines.",
+      "evidence": [
+        {
+          "rule_name": "SQL_STORED_PROCEDURE",
+          "weight": 0.92,
+          "description": "Function/Procedure 'public.inventory_held_by_customer' (plpgsql) encapsulates server-side business logic and return type 'integer\n    LANGUAGE plpgsql'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:162:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "stored_procedure_router",
+      "category": "procedural_transaction_control",
+      "target_name": "public.inventory_in_stock",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 184,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Encapsulated business logic and multi-step transaction workflow inside server-side routines.",
+      "evidence": [
+        {
+          "rule_name": "SQL_STORED_PROCEDURE",
+          "weight": 0.92,
+          "description": "Function/Procedure 'public.inventory_in_stock' (plpgsql) encapsulates server-side business logic and return type 'boolean\n    LANGUAGE plpgsql'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:184:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "stored_procedure_router",
+      "category": "procedural_transaction_control",
+      "target_name": "public.last_day",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 221,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Encapsulated business logic and multi-step transaction workflow inside server-side routines.",
+      "evidence": [
+        {
+          "rule_name": "SQL_STORED_PROCEDURE",
+          "weight": 0.92,
+          "description": "Function/Procedure 'public.last_day' (plpgsql) encapsulates server-side business logic and return type 'trigger\n    LANGUAGE plpgsql'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:221:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "film_fulltext_trigger",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2620,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'film_fulltext_trigger' intercepts BEFORE INSERT/UPDATE FOR EACH ROW on table 'public.film'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2620:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2627,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.actor'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2627:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2634,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.address'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2634:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2641,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.category'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2641:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2648,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.city'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2648:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2655,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.country'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2655:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2662,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.customer'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2662:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2669,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.film'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2669:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2676,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.film_actor'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2676:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2683,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.film_category'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2683:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2690,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.film_embedding'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2690:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2697,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.inventory'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2697:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2704,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.language'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2704:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2711,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.rental'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2711:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2718,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.staff'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2718:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "last_updated",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2725,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'last_updated' intercepts BEFORE UPDATE FOR EACH ROW on table 'public.store'",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2725:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.customer_customer_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.customer_customer_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.actor_actor_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.actor_actor_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.category_category_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.category_category_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.film_film_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.film_film_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.address_address_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.address_address_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.city_city_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.city_city_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.country_country_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.country_country_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.inventory_inventory_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.inventory_inventory_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.language_language_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.language_language_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_payment_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.payment_payment_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.rental_rental_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.rental_rental_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.staff_staff_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.staff_staff_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.store_store_id_seq",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'public.store_store_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.customer.customer_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 272,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.customer.customer_id' uses Factory ID generator (nextval('public.customer_customer_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:272:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.actor.actor_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 383,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.actor.actor_id' uses Factory ID generator (nextval('public.actor_actor_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:383:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.category.category_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 411,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.category.category_id' uses Factory ID generator (nextval('public.category_category_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:411:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.film.film_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 438,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.film.film_id' uses Factory ID generator (nextval('public.film_film_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:438:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.address.address_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 553,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.address.address_id' uses Factory ID generator (nextval('public.address_address_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:553:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.city.city_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 585,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.city.city_id' uses Factory ID generator (nextval('public.city_city_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:585:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.country.country_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 613,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.country.country_id' uses Factory ID generator (nextval('public.country_country_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:613:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.inventory.inventory_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 688,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.inventory.inventory_id' uses Factory ID generator (nextval('public.inventory_inventory_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:688:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.language.language_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 716,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.language.language_id' uses Factory ID generator (nextval('public.language_language_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:716:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 766,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:766:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_01.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 785,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_01.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:785:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_02.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 802,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_02.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:802:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_03.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 819,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_03.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:819:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_04.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 836,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_04.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:836:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_05.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 853,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_05.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:853:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_06.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 870,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_06.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:870:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_07.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 887,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_07.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:887:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_08.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 904,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_08.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:904:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_09.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 921,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_09.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:921:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_10.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 938,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_10.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:938:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_11.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 955,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_11.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:955:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2022_12.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 972,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2022_12.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:972:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_01.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 989,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_01.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:989:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_02.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1006,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_02.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1006:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_03.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1023,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_03.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1023:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_04.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1040,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_04.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1040:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_05.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1057,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_05.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1057:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_06.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1074,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_06.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1074:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_07.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1091,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_07.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1091:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_08.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1108,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_08.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1108:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_09.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1125,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_09.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1125:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_10.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1142,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_10.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1142:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_11.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1159,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_11.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1159:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2023_12.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1176,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2023_12.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1176:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_01.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1193,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_01.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1193:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_02.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1210,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_02.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1210:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_03.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1227,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_03.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1227:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_04.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1244,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_04.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1244:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_05.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1261,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_05.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1261:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_06.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1278,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_06.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1278:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_07.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1295,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_07.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1295:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_08.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1312,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_08.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1312:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_09.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1329,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_09.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1329:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_10.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1346,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_10.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1346:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_11.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1363,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_11.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1363:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2024_12.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1380,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2024_12.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1380:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_01.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1397,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_01.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1397:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_02.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1414,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_02.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1414:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_03.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1431,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_03.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1431:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_04.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1448,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_04.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1448:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_05.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1465,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_05.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1465:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_06.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1482,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_06.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1482:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_07.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1499,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_07.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1499:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_08.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1516,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_08.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1516:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_09.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1533,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_09.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1533:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_10.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1550,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_10.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1550:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_11.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1567,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_11.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1567:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2025_12.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1584,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2025_12.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1584:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2026_01.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1601,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2026_01.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1601:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2026_02.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1618,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2026_02.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1618:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2026_03.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1635,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2026_03.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1635:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2026_04.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1652,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2026_04.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1652:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2026_05.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1669,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2026_05.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1669:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2026_06.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1686,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2026_06.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1686:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.payment_p2026_07.payment_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1703,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.payment_p2026_07.payment_id' uses Factory ID generator (nextval('public.payment_payment_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1703:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.rental.rental_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1734,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.rental.rental_id' uses Factory ID generator (nextval('public.rental_rental_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1734:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.staff.staff_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1805,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.staff.staff_id' uses Factory ID generator (nextval('public.staff_staff_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1805:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "public.store.store_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1840,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'public.store.store_id' uses Factory ID generator (nextval('public.store_store_id_seq'::regclass))",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1840:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "prototype_row_cloner",
+      "category": "creational",
+      "target_name": "INSERT_SELECT",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 324,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Prototype pattern cloning existing template rows into new records via INSERT INTO ... SELECT.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_PROTOTYPE_CLONER",
+          "weight": 0.88,
+          "description": "Prototype pattern: Cloning existing row prototypes via INSERT INTO ... SELECT",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:324:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "public.actor_info",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 516,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'public.actor_info' provides simplified interface over 5 relational joins",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:516:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "public.customer_list",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 626,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'public.customer_list' provides simplified interface over 3 relational joins",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:626:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "public.film_list",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 651,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'public.film_list' provides simplified interface over 4 relational joins",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:651:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "public.nicer_but_slower_film_list",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 729,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'public.nicer_but_slower_film_list' provides simplified interface over 4 relational joins",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:729:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "public.rental_by_category",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1752,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'public.rental_by_category' provides simplified interface over 5 relational joins",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1752:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "public.sales_by_film_category",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1772,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'public.sales_by_film_category' provides simplified interface over 5 relational joins",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1772:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "public.sales_by_store",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1854,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'public.sales_by_store' provides simplified interface over 7 relational joins",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1854:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "public.staff_list",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1876,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'public.staff_list' provides simplified interface over 3 relational joins",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1876:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "flyweight_lookup_dictionary",
+      "category": "structural",
+      "target_name": "public.category",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 411,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Flyweight pattern deduplicating repeating string constants into small integer foreign key dictionary tables.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FLYWEIGHT_DICTIONARY",
+          "weight": 0.9,
+          "description": "Flyweight pattern: Table 'public.category' serves as a shared lookup dictionary for constant values",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:411:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "proxy_staged_landing_table",
+      "category": "structural",
+      "target_name": "tmpCustomer",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 318,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Proxy pattern buffering raw batch data into unlogged/temporary staging tables before ingestion.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_PROXY_STAGING",
+          "weight": 0.88,
+          "description": "Proxy pattern: Table 'tmpCustomer' acts as a transient staging / ingestion buffer",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:318:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "chain_of_responsibility_trigger_pipeline",
+      "category": "behavioral",
+      "target_name": "public.film",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 2620,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Chain of Responsibility sequencing ordered triggers (validation -> normalization -> audit).",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_CHAIN_TRIGGER_PIPELINE",
+          "weight": 0.9,
+          "description": "Chain of Responsibility: Table 'public.film' chains 2 sequential triggers (film_fulltext_trigger, last_updated)",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:2620:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "strategy_dynamic_partition_pruning",
+      "category": "behavioral",
+      "target_name": "public.payment",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 766,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Strategy pattern selecting optimized storage partitions dynamically based on query filter keys.",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_STRATEGY_PRUNING",
+          "weight": 0.88,
+          "description": "Strategy pattern: Partition strategy 'RANGE (payment_date)' dynamically directs queries to physical sub-tables",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:766:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.inventory.film_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 688,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.inventory.film_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:688:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.payment_p2022_01.rental_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 785,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.payment_p2022_01.rental_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:785:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.payment_p2022_02.rental_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 802,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.payment_p2022_02.rental_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:802:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.payment_p2022_03.rental_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 819,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.payment_p2022_03.rental_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:819:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.payment_p2022_04.rental_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 836,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.payment_p2022_04.rental_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:836:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.payment_p2022_05.rental_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 853,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.payment_p2022_05.rental_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:853:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.payment_p2022_06.rental_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 870,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.payment_p2022_06.rental_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:870:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.rental.customer_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1734,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.rental.customer_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1734:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.rental.staff_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1734,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.rental.staff_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1734:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.staff.address_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1805,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.staff.address_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1805:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.staff.store_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1805,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.staff.store_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1805:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "public.store.address_id",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1840,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'public.store.address_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1840:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "fat_view_interface_isp",
+      "category": "solid_principles",
+      "target_name": "public.sales_by_store",
+      "location": {
+        "file_path": "benchmarks/real_world/pagila_postgresql.sql",
+        "line_number": 1854,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.85,
+        "percentage": 85,
+        "level": "VERY_HIGH"
+      },
+      "summary": "View joining excessive tables (>= 8) creating monolithic interface coupling and slow execution.",
+      "evidence": [
+        {
+          "rule_name": "SOLID_ISP_FAT_VIEW",
+          "weight": 0.85,
+          "description": "View 'public.sales_by_store' joins 7 tables (>=6), violating Interface Segregation Principle",
+          "location": "benchmarks/real_world/pagila_postgresql.sql:1854:1"
+        }
+      ]
+    }
+  ]
+}

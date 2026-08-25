@@ -1,0 +1,1097 @@
+{
+  "target_path": "benchmarks/ecommerce_enterprise_schema.sql",
+  "scanned_files_count": 1,
+  "execution_time_seconds": 0.0015,
+  "total_detections": 45,
+  "category_counts": {
+    "sql_idiomatic_optimization": 6,
+    "relational_indexing_schema": 7,
+    "procedural_transaction_control": 5,
+    "creational": 6,
+    "structural": 6,
+    "behavioral": 10,
+    "sql_security_hazards": 5
+  },
+  "detections": [
+    {
+      "pattern_type": "recursive_cte_hierarchy",
+      "category": "sql_idiomatic_optimization",
+      "target_name": "WITH_RECURSIVE",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 144,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Hierarchical graph or tree traversal using WITH RECURSIVE queries with anchor and recursive members.",
+      "evidence": [
+        {
+          "rule_name": "SQL_RECURSIVE_CTE",
+          "weight": 0.95,
+          "description": "Query utilizes WITH RECURSIVE CTE for hierarchical tree or graph traversal",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:144:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "window_function_analytics",
+      "category": "sql_idiomatic_optimization",
+      "target_name": "OVER()",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 144,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Analytical aggregations and ranking across partitions (ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, SUM OVER).",
+      "evidence": [
+        {
+          "rule_name": "SQL_WINDOW_FUNCTION",
+          "weight": 0.92,
+          "description": "Query applies analytical Window Function (OVER PARTITION BY / ORDER BY)",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:144:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "upsert_merge_idempotency",
+      "category": "sql_idiomatic_optimization",
+      "target_name": "UPSERT/MERGE",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 157,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Atomic insert-or-update idempotency using ON CONFLICT DO UPDATE or standard ANSI MERGE INTO.",
+      "evidence": [
+        {
+          "rule_name": "SQL_UPSERT_MERGE",
+          "weight": 0.92,
+          "description": "Atomic upsert operation using ON CONFLICT DO UPDATE / MERGE INTO for idempotent mutations",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:157:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "materialized_view_cache",
+      "category": "sql_idiomatic_optimization",
+      "target_name": "mv_daily_financial_summary",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 122,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Precomputed query caching and indexing via CREATE MATERIALIZED VIEW with REFRESH strategy.",
+      "evidence": [
+        {
+          "rule_name": "SQL_MATERIALIZED_VIEW",
+          "weight": 0.9,
+          "description": "Materialized View 'mv_daily_financial_summary' caches precomputed query results with physical storage",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:122:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "lateral_join_subquery",
+      "category": "sql_idiomatic_optimization",
+      "target_name": "JOIN_LATERAL",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 161,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Correlated subquery evaluation per row using CROSS/LEFT JOIN LATERAL or APPLY.",
+      "evidence": [
+        {
+          "rule_name": "SQL_LATERAL_JOIN",
+          "weight": 0.9,
+          "description": "Query evaluates correlated subquery per row using LATERAL join / APPLY syntax",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:161:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "table_partitioning_sharding",
+      "category": "sql_idiomatic_optimization",
+      "target_name": "ledger_transactions",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 34,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Horizontal data partitioning by RANGE, LIST, or HASH for high-volume storage scalability.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TABLE_PARTITION",
+          "weight": 0.92,
+          "description": "Table 'ledger_transactions' implements Horizontal Partitioning by RANGE (transaction_date)",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:34:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "partial_conditional_index",
+      "category": "relational_indexing_schema",
+      "target_name": "idx_ledger_active_pending",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 47,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Space-saving index defined over a subset of rows using CREATE INDEX ... WHERE filter.",
+      "evidence": [
+        {
+          "rule_name": "SQL_PARTIAL_INDEX",
+          "weight": 0.95,
+          "description": "Index 'idx_ledger_active_pending' on 'ledger_transactions' is a Partial Index with predicate: WHERE status = 'PENDING'",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:47:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "covering_index_include",
+      "category": "relational_indexing_schema",
+      "target_name": "idx_ledger_covering_acc",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 48,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Index-only scans avoiding heap lookups via CREATE INDEX ... INCLUDE (columns).",
+      "evidence": [
+        {
+          "rule_name": "SQL_COVERING_INDEX",
+          "weight": 0.92,
+          "description": "Index 'idx_ledger_covering_acc' on 'ledger_transactions' uses INCLUDE clause (amount, currency) enabling Index-Only Scans",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:48:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "gin_gist_specialized_index",
+      "category": "relational_indexing_schema",
+      "target_name": "idx_ledger_metadata_gin",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 49,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Inverted or search-tree indexing for JSONB, array elements, PostGIS geometry, or full-text tsvector.",
+      "evidence": [
+        {
+          "rule_name": "SQL_SPECIALIZED_INDEX_TYPE",
+          "weight": 0.95,
+          "description": "Index 'idx_ledger_metadata_gin' on 'ledger_transactions' uses specialized access method GIN for JSONB/array/geometry/full-text",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:49:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "composite_multi_column_index",
+      "category": "relational_indexing_schema",
+      "target_name": "idx_ledger_active_pending",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 47,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting.",
+      "evidence": [
+        {
+          "rule_name": "SQL_COMPOSITE_INDEX",
+          "weight": 0.9,
+          "description": "Index 'idx_ledger_active_pending' on 'ledger_transactions' is a composite multi-column index (organization_id, transaction_date)",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:47:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "composite_multi_column_index",
+      "category": "relational_indexing_schema",
+      "target_name": "idx_ledger_compound",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 50,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Multi-column compound B-tree index optimizing multi-predicate queries and sorting.",
+      "evidence": [
+        {
+          "rule_name": "SQL_COMPOSITE_INDEX",
+          "weight": 0.9,
+          "description": "Index 'idx_ledger_compound' on 'ledger_transactions' is a composite multi-column index (organization_id, status, transaction_date)",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:50:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "foreign_key_cascade_tree",
+      "category": "relational_indexing_schema",
+      "target_name": "organizations->organizations",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 26,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Declarative referential integrity with ON DELETE/UPDATE CASCADE or SET NULL rules.",
+      "evidence": [
+        {
+          "rule_name": "SQL_FK_CASCADE",
+          "weight": 0.9,
+          "description": "Table 'organizations' defines referential integrity action CASCADE referencing 'organizations'",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:26:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "foreign_key_cascade_tree",
+      "category": "relational_indexing_schema",
+      "target_name": "ledger_transactions->organizations",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 34,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Declarative referential integrity with ON DELETE/UPDATE CASCADE or SET NULL rules.",
+      "evidence": [
+        {
+          "rule_name": "SQL_FK_CASCADE",
+          "weight": 0.9,
+          "description": "Table 'ledger_transactions' defines referential integrity action CASCADE referencing 'organizations'",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:34:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "stored_procedure_router",
+      "category": "procedural_transaction_control",
+      "target_name": "process_settlement_batch",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 88,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Encapsulated business logic and multi-step transaction workflow inside server-side routines.",
+      "evidence": [
+        {
+          "rule_name": "SQL_STORED_PROCEDURE",
+          "weight": 0.92,
+          "description": "Function/Procedure 'process_settlement_batch' (plpgsql) encapsulates server-side business logic and return type 'void'",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:88:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "stored_procedure_router",
+      "category": "procedural_transaction_control",
+      "target_name": "query_custom_table",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 111,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Encapsulated business logic and multi-step transaction workflow inside server-side routines.",
+      "evidence": [
+        {
+          "rule_name": "SQL_STORED_PROCEDURE",
+          "weight": 0.92,
+          "description": "Function/Procedure 'query_custom_table' (plpgsql) encapsulates server-side business logic and return type 'void'",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:111:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "trigger_event_interceptor",
+      "category": "procedural_transaction_control",
+      "target_name": "trg_ledger_audit",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 118,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Automated lifecycle event interception via BEFORE/AFTER INSERT/UPDATE/DELETE FOR EACH ROW.",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRIGGER_INTERCEPTOR",
+          "weight": 0.95,
+          "description": "Trigger 'trg_ledger_audit' intercepts AFTER INSERT/UPDATE FOR EACH ROW on table 'ledger_transactions'",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:118:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "transaction_isolation_guard",
+      "category": "procedural_transaction_control",
+      "target_name": "ISOLATION_LOCK",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 167,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Explicit concurrency and consistency locking (SERIALIZABLE, REPEATABLE READ, SELECT FOR UPDATE).",
+      "evidence": [
+        {
+          "rule_name": "SQL_TRANSACTION_ISOLATION",
+          "weight": 0.92,
+          "description": "Explicit concurrency control and locking (SET TRANSACTION ISOLATION / SELECT FOR UPDATE)",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:167:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "autonomous_transaction_savepoint",
+      "category": "procedural_transaction_control",
+      "target_name": "process_settlement_batch",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 88,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Granular rollback boundaries and nested transaction checkpoints using SAVEPOINT / RELEASE.",
+      "evidence": [
+        {
+          "rule_name": "SQL_SAVEPOINT_CHECKPOINT",
+          "weight": 0.9,
+          "description": "Routine 'process_settlement_batch' implements granular rollback checkpoint using SAVEPOINT",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:88:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "tenant_id_seq",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'tenant_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "order_id_seq",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 1,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_SEQUENCE",
+          "weight": 0.9,
+          "description": "Factory pattern: Sequence 'order_id_seq' generates monotonic unique identifiers",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:1:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "organizations.id",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 26,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'organizations.id' uses Factory ID generator (nextval('tenant_id_seq'))",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:26:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "ledger_transactions.id",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 34,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'ledger_transactions.id' uses Factory ID generator (gen_random_uuid())",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:34:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "factory_sequence_id_generator",
+      "category": "creational",
+      "target_name": "entity_attachments.id",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 53,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Factory pattern generating unique primary keys or UUIDs via CREATE SEQUENCE / GENERATED ALWAYS AS IDENTITY.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_FACTORY_IDENTITY",
+          "weight": 0.92,
+          "description": "Factory pattern: Column 'entity_attachments.id' uses Factory ID generator (gen_random_uuid())",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:53:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "singleton_config_param_table",
+      "category": "creational",
+      "target_name": "system_parameters",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 11,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Singleton pattern managing global system configuration in a constrained 1-row table or key-value store.",
+      "evidence": [
+        {
+          "rule_name": "CREATIONAL_SINGLETON_TABLE",
+          "weight": 0.92,
+          "description": "Singleton pattern: Table 'system_parameters' manages global configuration state (constrained by CHECK (id = 1))",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:11:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "bridge_polymorphic_junction",
+      "category": "structural",
+      "target_name": "entity_attachments",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 53,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Bridge pattern decoupling entity types from relations via polymorphic target_type + target_id junction.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_BRIDGE_POLYMORPHIC",
+          "weight": 0.88,
+          "description": "Bridge pattern: Table 'entity_attachments' implements polymorphic relation decoupling target types and identifiers",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:53:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "composite_hierarchical_tree",
+      "category": "structural",
+      "target_name": "organizations",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 26,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Composite pattern modeling parent-child trees via self-referencing foreign keys or closure tables.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_COMPOSITE_TREE",
+          "weight": 0.92,
+          "description": "Composite pattern: Table 'organizations' models hierarchical parent-child trees via self-reference 'parent_id'",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:26:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "decorator_computed_audit_log",
+      "category": "structural",
+      "target_name": "trg_ledger_audit",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 118,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Decorator pattern augmenting table modifications with automated shadow audit logs and timestamps.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_DECORATOR_AUDIT",
+          "weight": 0.95,
+          "description": "Decorator pattern: Trigger 'trg_ledger_audit' decorates mutations on 'ledger_transactions' with automated audit/timestamp capture",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:118:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "facade_reporting_view",
+      "category": "structural",
+      "target_name": "v_organization_full_tree",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 133,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Facade pattern providing unified simplified read interface over complex normalized multi-table joins.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FACADE_VIEW",
+          "weight": 0.9,
+          "description": "Facade pattern: View 'v_organization_full_tree' provides simplified interface over 2 relational joins",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:133:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "flyweight_lookup_dictionary",
+      "category": "structural",
+      "target_name": "order_status_dictionary",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 19,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Flyweight pattern deduplicating repeating string constants into small integer foreign key dictionary tables.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_FLYWEIGHT_DICTIONARY",
+          "weight": 0.9,
+          "description": "Flyweight pattern: Table 'order_status_dictionary' serves as a shared lookup dictionary for constant values",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:19:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "proxy_staged_landing_table",
+      "category": "structural",
+      "target_name": "staging_raw_events",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 72,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Proxy pattern buffering raw batch data into unlogged/temporary staging tables before ingestion.",
+      "evidence": [
+        {
+          "rule_name": "STRUCTURAL_PROXY_STAGING",
+          "weight": 0.88,
+          "description": "Proxy pattern: Table 'staging_raw_events' acts as a transient staging / ingestion buffer",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:72:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "command_action_queue_table",
+      "category": "behavioral",
+      "target_name": "outbox_tasks",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 62,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Command pattern storing asynchronous transactional tasks or events in a work queue table (SKIP LOCKED).",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_COMMAND_QUEUE",
+          "weight": 0.92,
+          "description": "Command pattern: Table 'outbox_tasks' implements Transactional Outbox / Command Queue for asynchronous processing",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:62:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "interpreter_dynamic_sql_eval",
+      "category": "behavioral",
+      "target_name": "query_custom_table",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 111,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Interpreter pattern evaluating parameterized dynamic expressions at runtime via EXECUTE / sp_executesql.",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_INTERPRETER_DYNAMIC_SQL",
+          "weight": 0.88,
+          "description": "Interpreter pattern: Routine 'query_custom_table' dynamically interprets and executes parameterized SQL AST at runtime",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:111:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "iterator_cursor_fetch_loop",
+      "category": "behavioral",
+      "target_name": "process_settlement_batch",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 88,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Iterator pattern sequentially traversing large query result sets using CURSOR FOR ... FETCH NEXT.",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_ITERATOR_CURSOR",
+          "weight": 0.92,
+          "description": "Iterator pattern: Routine 'process_settlement_batch' sequentially iterates over query records via cursor fetch loop",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:88:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "mediator_pubsub_notify",
+      "category": "behavioral",
+      "target_name": "process_settlement_batch",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 88,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Mediator pattern broadcasting decoupled change notifications across services via LISTEN / NOTIFY.",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_MEDIATOR_NOTIFY",
+          "weight": 0.92,
+          "description": "Mediator pattern: Routine 'process_settlement_batch' publishes messages to decoupled event bus via LISTEN/NOTIFY channel",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:88:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "memento_point_in_time_flashback",
+      "category": "behavioral",
+      "target_name": "account_balances_history",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 79,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Memento pattern preserving temporal snapshots via System-Versioned / Temporal tables or Change Data Capture (CDC).",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_MEMENTO_TEMPORAL",
+          "weight": 0.92,
+          "description": "Memento pattern: Table 'account_balances_history' implements Temporal / System-Versioned history tracking",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:79:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "observer_trigger_audit_broadcast",
+      "category": "behavioral",
+      "target_name": "trg_ledger_audit",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 118,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.92,
+        "percentage": 92,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Observer pattern publishing table modification events to observer subscriber tables or event streams.",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_OBSERVER_TRIGGER",
+          "weight": 0.92,
+          "description": "Observer pattern: AFTER trigger 'trg_ledger_audit' on 'ledger_transactions' notifies downstream subscribers",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:118:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "state_machine_status_constraint",
+      "category": "behavioral",
+      "target_name": "ledger_transactions",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 34,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "State pattern enforcing valid lifecycle status transitions via CHECK constraints or trigger guards.",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_STATE_MACHINE_CHECK",
+          "weight": 0.9,
+          "description": "State pattern: Table 'ledger_transactions' enforces valid state transitions via CHECK constraint (status IN ('PENDING', 'POSTED', 'VOID', 'RECONCILED'))",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:34:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "strategy_dynamic_partition_pruning",
+      "category": "behavioral",
+      "target_name": "ledger_transactions",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 34,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Strategy pattern selecting optimized storage partitions dynamically based on query filter keys.",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_STRATEGY_PRUNING",
+          "weight": 0.88,
+          "description": "Strategy pattern: Partition strategy 'RANGE (transaction_date)' dynamically directs queries to physical sub-tables",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:34:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "template_method_procedural_schema",
+      "category": "behavioral",
+      "target_name": "process_settlement_batch",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 88,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Template Method pattern executing standard transaction workflow (begin -> hook -> commit -> catch).",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_TEMPLATE_METHOD_PROCEDURE",
+          "weight": 0.9,
+          "description": "Template Method pattern: Routine 'process_settlement_batch' follows canonical structure (BEGIN -> EXECUTE -> EXCEPTION WHEN)",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:88:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "visitor_recursive_tree_scan",
+      "category": "behavioral",
+      "target_name": "RECURSIVE_VISITOR",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 144,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Visitor pattern executing domain operations across all nodes in a hierarchical tree via recursive query.",
+      "evidence": [
+        {
+          "rule_name": "BEHAVIORAL_VISITOR_RECURSIVE_SCAN",
+          "weight": 0.9,
+          "description": "Visitor pattern: Recursive query traverses hierarchical graph accumulating path/depth metadata",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:144:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "sql_injection_dynamic_concat_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "query_custom_table",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 113,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.95,
+        "percentage": 95,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Unsanitized string concatenation in dynamic EXECUTE statements risking arbitrary SQL injection.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_DYNAMIC_SQL_INJECTION",
+          "weight": 0.95,
+          "description": "Function 'query_custom_table' executes dynamically concatenated SQL query without sanitization, risking SQL Injection",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:113:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "missing_index_foreign_key_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "organizations.parent_id",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 26,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Foreign key column without corresponding index causing full table scans and table-level locks on DELETE.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_MISSING_FK_INDEX",
+          "weight": 0.88,
+          "description": "Foreign Key column 'organizations.parent_id' lacks an index, risking full table scans and table-level locking on DELETE",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:26:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "n_plus_one_cursor_iteration_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "process_settlement_batch",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 88,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.9,
+        "percentage": 90,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Row-by-Row cursor loop (RBAR) executing queries inside iteration instead of vectorized set-based operations.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_RBAR_CURSOR_LOOP",
+          "weight": 0.9,
+          "description": "Routine 'process_settlement_batch' performs row-by-row mutations inside cursor loop (RBAR Anti-Pattern); rewrite as set-based bulk operation",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:88:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "unbounded_select_star_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "query_custom_table",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 111,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.85,
+        "percentage": 85,
+        "level": "VERY_HIGH"
+      },
+      "summary": "Production view or procedure using SELECT * risking schema drift breakage and excessive IO.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_SELECT_STAR_PROCEDURE",
+          "weight": 0.85,
+          "description": "Routine 'query_custom_table' queries with 'SELECT *' risking column alignment errors",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:111:1"
+        }
+      ]
+    },
+    {
+      "pattern_type": "deadlock_prone_lock_ordering_hazard",
+      "category": "sql_security_hazards",
+      "target_name": "FOR_UPDATE",
+      "location": {
+        "file_path": "benchmarks/ecommerce_enterprise_schema.sql",
+        "line_number": 167,
+        "column_number": 1
+      },
+      "confidence": {
+        "score": 0.88,
+        "percentage": 88,
+        "level": "VERY_HIGH"
+      },
+      "summary": "SELECT FOR UPDATE without explicit ORDER BY risking concurrent deadlock under high contention.",
+      "evidence": [
+        {
+          "rule_name": "HAZARD_UNORDERED_FOR_UPDATE",
+          "weight": 0.88,
+          "description": "SELECT FOR UPDATE statement without ORDER BY risks deadlocks under concurrent execution",
+          "location": "benchmarks/ecommerce_enterprise_schema.sql:167:1"
+        }
+      ]
+    }
+  ]
+}
